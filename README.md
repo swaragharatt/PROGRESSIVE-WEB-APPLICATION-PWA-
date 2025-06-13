@@ -1,52 +1,89 @@
-# PROGRESSIVE-WEB-APPLICATION-PWA-
-markdown
+
 # GearHead Auto Parts
 
-A basic web storefront for car parts with a clean layout and Firebase push notification support.
+A simple web-based storefront for automotive parts, built with HTML, CSS, and JavaScript. This Progressive Web Application (PWA) includes Firebase Cloud Messaging (FCM) support for push notifications.
+
+---
 
 ## Features
 
-- Product listing with rupee pricing
-- Cart icon with item count (localStorage)
-- Firebase Cloud Messaging integration
-- Marquee banner for offers
+* Product listings with prices in ₹ (Rupees)
+* Cart icon with dynamic item count using `localStorage`
+* Push notification support using Firebase Cloud Messaging
+* Marquee banner displaying promotional offers
+
+---
 
 ## Tech Stack
 
-- HTML, CSS, JavaScript
-- Firebase Cloud Messaging
-- Python (for local server)
+* **Frontend:** HTML, CSS, JavaScript
+* **Push Notifications:** Firebase Cloud Messaging
+* **Server (for local testing):** Python
 
-## Setup
+---
 
-1. Clone this repo.
-2. Run a local server (for example, using Python):
+## Setup Instructions
 
-bash
-python -m http.server 8080
+1. **Clone or Download the Repository**
 
-3. Visit `http://localhost:8080`
+   ```bash
+   git clone https://github.com/swaragharatt/gearhead-auto-parts.git
+   cd gearhead-auto-parts
+   ```
 
-## Firebase Configuration
+2. **Start a Local Server**
 
-* Create a Firebase project
-* Enable Cloud Messaging
-* Replace `firebaseConfig` in `index.html` and `firebase-messaging-sw.js`
-* Use a valid VAPID key if required
+   Required for push notifications to work (they don’t run over `file://` protocol):
+
+   ```bash
+   python -m http.server 8080
+   ```
+
+3. **Open in Browser**
+
+   Visit:
+   `http://localhost:8080`
+
+---
+
+## Firebase Setup
+
+1. Create a Firebase project at [console.firebase.google.com](https://console.firebase.google.com/)
+2. Enable **Cloud Messaging**
+3. In your project settings, obtain the `firebaseConfig` object
+4. Replace the placeholder values in:
+
+   * `index.html`
+   * `firebase-messaging-sw.js`
+5. Use a valid **VAPID key** if Firebase requires one for web push
+
+---
 
 ## Notifications
 
-Use the Firebase console to send test push messages using the browser’s FCM token.
+After setup:
+
+* Open your site in a browser
+* Grant notification permission
+* Copy the FCM token logged in the browser console
+* Send test messages from the Firebase Console using that token
+
+---
 
 ## Notes
 
-* Notifications won’t work via direct file access, use a server
-* Cart uses local storage
+* Push notifications **do not work** when opening the file directly (i.e., from `file://`). Always run a local server.
+* The shopping cart system uses `localStorage` for simplicity.
+
+---
 
 ## Author
-swaragharatt
 
-#Output 
+**swaragharatt**
+
+---
+
+## Output
 
 ![Screenshot 2025-06-13 141556](https://github.com/user-attachments/assets/4f60da75-f729-40b1-af71-c0e28a3ded5a)
 
