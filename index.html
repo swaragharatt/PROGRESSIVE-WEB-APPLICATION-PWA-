@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GearHead Auto Parts</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-messaging-compat.js"></script>
+</head>
+<body>
+  <h1>Welcome to GearHead Auto Parts</h1>
+  <p>Push notifications will be requested shortly...</p>
+
+  <script>
+    // Step 1: Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbZgpsBfjCBsh4rWMAq0LAjmEDd35eTK0",
+      authDomain: "gearheadpush.firebaseapp.com",
+      projectId: "gearheadpush",
+      storageBucket: "gearheadpush.appspot.com",
+      messagingSenderId: "931473448824",
+      appId: "1:931473448824:web:0f109b290d3ec9236e328d"
+    };
+
+    // Step 2: Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const messaging = firebase.messaging();
+
+    // Step 3: Register Service Worker and get FCM Token
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('firebase-messaging-sw.js')
+        .then((registration) => {
+          // No need to call useServiceWorker anymore
+          return Notification.requestPermission().then((permission) => {
+            if (permission === 'granted') {
+              return messaging.getToken({
+                vapidKey: 'BDQxnkkBzny-oqJeAPOYjUO03Hqdn0f20OaS_NmwktUsTm1WIdk6ptbTYDA8cz_h5acQmjWVnMXqjo09xY94KFc',
+                serviceWorkerRegistration: registration // ✅ Pass here
+              });
+            } else {
+              throw new Error("Permission not granted.");
+            }
+          });
+        })
+        .then((token) => {
+          alert("Push notifications enabled!\nFCM Token:\n" + token);
+          console.log("FCM Token:", token);
+        })
+        .catch((error) => {
+          alert("Push Notification Error: " + error.message);
+          console.error(error);
+        });
+    }
+  </script>
+</body>
+</html>
