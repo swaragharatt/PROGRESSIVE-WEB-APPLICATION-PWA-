@@ -46,5 +46,7 @@ Use the Firebase console to send test push messages using the browser’s FCM to
 ## Author
 swaragharatt
 
+#Output 
+
 ![Screenshot 2025-06-13 141556](https://github.com/user-attachments/assets/4f60da75-f729-40b1-af71-c0e28a3ded5a)
 
